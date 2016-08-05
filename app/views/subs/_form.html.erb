@@ -1,0 +1,13 @@
+<% button_action = (sub.persisted? ? "Edit Sub" : "Add Sub") %>
+<% action = (sub.persisted? ? sub_url(sub) : subs_url) %>
+<% method = (sub.persisted? ? :patch : :post) %>
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <label>Title:
+    <input type="text" name="sub[title]" value="<%= sub.title %>">
+  </label>
+  <label>Description:
+    <textarea name="sub[description]" rows="8" cols="40"><%= sub.description %></textarea>
+  </label>
+  <input type="submit" value="<%= button_action %>">
+</form>

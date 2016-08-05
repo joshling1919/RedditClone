@@ -1,0 +1,27 @@
+<h1>All Subs</h1>
+<table>
+  <tr>
+    <th>
+      Sub Name:
+    </th>
+    <th>
+      Description:
+    </th>
+    <th>
+      Created By:
+    </th>
+  </tr>
+  <tr>
+    <% @subs.each do |sub| %>
+    <td>
+      <a href="/subs/<%= sub.id %>"><%= sub.title %></a>
+    </td>
+    <td>
+      <%= sub.description %>
+    </td>
+    <td>
+      <%= sub.author.username %>
+    </td>
+      <% end %>
+  </tr>
+</table>

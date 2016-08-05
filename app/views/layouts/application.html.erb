@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reddit</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if current_user %>
+  <ul>
+    <li>Logged In As: <%= current_user.username %> </li>
+  </ul>
+  <%= button_to "Log out", '/session', method: :delete %>
+<% end %>
+
+<ul>
+  <% flash[:errors].try(:each) do |error| %>
+    <li> <%= error %> </li>
+    <% end %>
+</ul>
+
+<%= yield %>
+
+</body>
+</html>

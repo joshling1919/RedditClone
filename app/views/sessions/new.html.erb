@@ -1,0 +1,11 @@
+<form action='/session' method="post">
+  <label for="username">Username: </label>
+  <input type="text" name="session[username]" value="" id="username">
+
+  <label for="password">Password: </label>
+  <input type="password" name="session[password]" value="" id="password">
+
+  <input type="submit" value="Login">
+</form>
+
+<%= link_to "Sign Up", new_user_url %>
