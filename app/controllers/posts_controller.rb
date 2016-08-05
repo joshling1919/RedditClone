@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :is_logged_in?
   before_action :owned_post, only: [:edit, :update, :destroy]
 
-  has_many :comments
+
   def index
     @posts = Post.all
   end

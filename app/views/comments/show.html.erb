@@ -1,5 +1,15 @@
-<% @comments.each do |comment| %>
+<h1><%= @comment.content %></h1>
+<% @comment.child_comments.try(:each) do |nested| %>
   <p>
-    <%= comment.content %>
+    <%= nested.user.username %>:
+    <%= nested.content %>
   </p>
-<% end %>
+  <% end %>
+
+  <form action="/comments" method="post">
+  <label for="reply">Reply: </label>
+<textarea name="comment[content]" rows="8" cols="40"></textarea>
+<input type="hidden" name="comment[post_id]" value="<%= @comment.post_id %>">
+<input type="hidden" name="comment[comment_id]" value="<%= @comment.id %>">
+<input type="submit" value="Reply">
+  </form>

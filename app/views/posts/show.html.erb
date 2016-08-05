@@ -2,10 +2,9 @@
 <p>Description: <%= @post.content %></p>
 <%= button_to "Edit post", edit_post_url, method: :get %>
 <% @post.comments.try(:each) do |comment| %>
-<p>
-  <%= comment.user.username %>:
-  <%= comment.content %>
-</p>
+  <% if comment.comment_id.nil? %>
+    <%= render "comments/nested", comment: comment %>
+  <% end %>
 <% end %>
 
 
