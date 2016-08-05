@@ -1,6 +1,6 @@
 class SubsController < ApplicationController
   before_action :is_logged_in?
-
+  before_action :owned_post, only: [:edit, :update, :destroy]
 
   def index
     @subs = Sub.all
@@ -37,6 +37,12 @@ class SubsController < ApplicationController
       flash.now[:errors] = @sub.errors.full_messages
       render :edit
     end
+  end
+
+  def destroy
+    @sub = Sub.find(params[:id])
+    @sub.destroy
+    redirect_to subs_url
   end
 
   private

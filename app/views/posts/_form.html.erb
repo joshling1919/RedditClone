@@ -1,0 +1,28 @@
+<% button_action = (post.persisted? ? "Edit Post" : "Add Post") %>
+<% action = (post.persisted? ? post_url(post) : posts_url) %>
+<% method = (post.persisted? ? :patch : :post) %>
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <label>Title:
+    <input type="text" name="post[title]" value="<%= post.title %>">
+  </label>
+  <label>URL:
+    <input type="text" name="post[url]" value="<%= post.url %>">
+  </label>
+  <label>Content:
+    <textarea name="post[content]" rows="8" cols="40"><%= post.content %></textarea>
+  </label>
+
+  <label for="subs">Subs: </label>
+  <% Sub.all.each do |sub| %>
+    <label>
+      <input type="checkbox" name="post[sub_ids][]" <%= "checked" if @post.sub_ids.include?(sub.id) %> value="<%= sub.id %>">
+      <%= sub.title %>
+    </label>
+  <% end %>
+
+
+
+  <input type="submit" value="<%= button_action %>">
+</form>
+<%= link_to "Back", action %>

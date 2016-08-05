@@ -1,2 +1,4 @@
 <h1>Edit Sub</h1>
 <%= render "form", sub: @sub %>
+
+<%= button_to "Delete Sub", sub_url(@sub.id), method: :delete %>

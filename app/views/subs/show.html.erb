@@ -1,4 +1,7 @@
 <h1>Sub title: <%= @sub.title %></h1>
 
 <%= button_to "Back To All Subs", subs_url, method: :get %>
-<%= link_to "Edit Sub" %>
+<% if current_user.id == @sub.user_id %>
+  <%= link_to "Edit Sub", edit_sub_url %>
+<% end %>
+<%= button_to "Add Post", new_post_url, method: :get %>

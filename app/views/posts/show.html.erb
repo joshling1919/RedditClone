@@ -1,0 +1,4 @@
+<h1> Post title: <%= @post.title %></h1>
+<p>Description: <%= @post.content %></p>
+<%= button_to "Edit post", edit_post_url, method: :get %>
+<%= button_to "Back to Subs", subs_url, method: :get %>
