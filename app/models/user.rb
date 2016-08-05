@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 
   has_many :subs
+  has_many :comments
 
   attr_reader :password
 

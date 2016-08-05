@@ -1,4 +1,20 @@
 <h1> Post title: <%= @post.title %></h1>
 <p>Description: <%= @post.content %></p>
 <%= button_to "Edit post", edit_post_url, method: :get %>
-<%= button_to "Back to Subs", subs_url, method: :get %>
+<% @post.comments.try(:each) do |comment| %>
+<p>
+  <%= comment.user.username %>:
+  <%= comment.content %>
+</p>
+<% end %>
+
+
+<ol>
+  Subs:
+  <% @post.subs.try(:each) do |sub| %>
+  <li> <%= link_to sub.title, sub_url(sub) %> </li>
+  <% end %>
+</ol>
+<%= button_to "Back to All Subs", subs_url, method: :get %>
+
+<%= render "comments/comment", post: @post %>

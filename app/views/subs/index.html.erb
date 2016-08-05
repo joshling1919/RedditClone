@@ -11,8 +11,9 @@
       Created By:
     </th>
   </tr>
-  <tr>
+
     <% @subs.each do |sub| %>
+    <tr>
     <td>
       <a href="/subs/<%= sub.id %>"><%= sub.title %></a>
     </td>
@@ -22,8 +23,8 @@
     <td>
       <%= sub.author.username %>
     </td>
+    </tr>
       <% end %>
-  </tr>
 </table>
 
 <%= button_to "Add Sub", new_sub_url, method: :get %>
