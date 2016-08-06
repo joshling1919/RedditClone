@@ -4,9 +4,7 @@
   <%= comment.content %>
   <%= link_to "Reply", comment_url(comment) %>
 </li>
-<% all_comments.each do |child| %>
-  <% if child.comment_id == comment.id %>
-    <%= render "comments/nested", comment: child, all_comments: all_comments %>
-  <% end %>
+<% all_comments[comment.id].each do |comment| %>
+    <%= render "comments/nested", comment: comment, all_comments: all_comments %>
 <% end %>
 </ul>
