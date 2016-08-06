@@ -1,10 +1,12 @@
 <ul>
   <li>
-  <strong><%= comment.user.username %>:</strong> 
+  <strong><%= comment.user.username %>:</strong>
   <%= comment.content %>
   <%= link_to "Reply", comment_url(comment) %>
 </li>
-<% comment.child_comments.try(:each) do |child| %>
-  <%= render "comments/nested", comment: child %>
+<% all_comments.each do |child| %>
+  <% if child.comment_id == comment.id %>
+    <%= render "comments/nested", comment: child, all_comments: all_comments %>
+  <% end %>
 <% end %>
 </ul>

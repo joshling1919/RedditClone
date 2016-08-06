@@ -1,10 +1,7 @@
 <h1><%= @comment.content %></h1>
 <% @comment.child_comments.try(:each) do |nested| %>
-  <p>
-    <%= nested.user.username %>:
-    <%= nested.content %>
-  </p>
-  <% end %>
+  <%= render "comments/nested", comment: nested %>
+<% end %>
 
   <form action="/comments" method="post">
   <label for="reply">Reply: </label>
@@ -13,3 +10,5 @@
 <input type="hidden" name="comment[comment_id]" value="<%= @comment.id %>">
 <input type="submit" value="Reply">
   </form>
+
+<%= link_to "Back", url_for(:back) %>

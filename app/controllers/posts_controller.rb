@@ -24,6 +24,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @all_comments = @post.comments
   end
 
   def edit
@@ -46,10 +47,12 @@ class PostsController < ApplicationController
     redirect_to posts_url
   end
 
+
   private
   def post_params
     params.require(:post).permit(:title, :url, :content, :user_id, sub_ids: [])
   end
+
 
   def owned_post
     @post = Post.find(params[:id])
